@@ -1,8 +1,6 @@
 // src/App.js
 import { useEffect, useState } from "react";
 
-const API_URL = import.meta.env.VITE_API_URL;
-
 type Note = {
   id: number;
   content: string;
@@ -16,7 +14,7 @@ function App() {
 
   const fetchNotes = async () => {
     try {
-      const response = await fetch(`${API_URL}/notes`);
+      const response = await fetch("http://localhost:3000/notes");
       const data = await response.json();
       setNotes(data);
     } catch (err) {
@@ -34,7 +32,7 @@ function App() {
     }
 
     try {
-      const response = await fetch(`${API_URL}/notes`, {
+      const response = await fetch("http://localhost:3000/notes", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
