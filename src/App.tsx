@@ -7,6 +7,8 @@ type Note = {
   createdAt: string;
 };
 
+const API_URL = import.meta.env.VITE_API_BASE_URL
+
 function App() {
   const [notes, setNotes] = useState<Note[]>([]);
   const [content, setContent] = useState("");
@@ -14,7 +16,7 @@ function App() {
 
   const fetchNotes = async () => {
     try {
-      const response = await fetch("http://localhost:3000/notes");
+      const response = await fetch(`${API_URL}/notes`);
       const data = await response.json();
       setNotes(data);
     } catch (err) {
@@ -32,7 +34,7 @@ function App() {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/notes", {
+      const response = await fetch(`${API_URL}/notes`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
